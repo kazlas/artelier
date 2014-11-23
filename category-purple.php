@@ -19,7 +19,11 @@
 	$categories = arte_get_category_children ('purple');
 	
 	foreach ($categories as $category) {
-		arte_show_category ($category);
+		echo "<h3>" ;
+		echo "<a href =\"" . get_category_link($category->cat_ID) . "\"";
+		echo "title =\"". $category->name . "\"";
+		echo ">" . $category->name ."</a>";
+		echo "</h3>";
 	}
 
 ?>
@@ -43,44 +47,6 @@
 		return $child_categories;
 	}
 	
-	/* 
-	* Show posts only for given category name
-	*/
-	function arte_show_category ($category) {
-		$args = array (
-			'cat' => $category->cat_ID,
-			'paged' => get_query_var('paged')
-		);
-		
-		//The Wordpress Loop
-		query_posts($args);
-		if (have_posts()) :
-			echo "<h3>" . $category->name . "</h3>";
-			
-			while (have_posts()) : the_post(); 
-?>
-
-					<table class="<?php arte_content_class(); ?>">
-					<tr>
-					<td><div class="purple_item">&nbsp;</div></td>
-					<td>
-					<a href="<?php  echo get_permalink(); ?>" ><?php the_title(); ?></a>
-					</td>
-					</tr>
-					</table>
-				
-							
-<?php			
-			endwhile; 
-						
-			echo "<p>";
-			posts_nav_link();
-			echo "</p>";
-		endif; 
-		
-		//Reset query
-		wp_reset_query();
-	}
 
 
 ?>

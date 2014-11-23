@@ -26,9 +26,9 @@
 			
 			//Back link			
 			echo "&lt;&lt;&nbsp;";
-			$purple_category = get_category_by_slug("purple");
-			echo "<a href =\"" . get_category_link($purple_category->cat_ID) . "\">" . $purple_category->name ."</a>";
-
+			$category = arte_get_category();
+			echo "<a href =\"" . get_category_link($category->cat_ID) . "\">" . $category->name ."</a>";
+			
 			echo "</div>";
 
 		endwhile; 

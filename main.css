@@ -282,7 +282,12 @@
 		color: #800080;
 	}
 	
-	.purple td a
+	.purple td a,
+	.purple-1 td a,
+	.purple-2 td a,
+	.purple-3 td a,
+	.purple-4 td a,
+	.purple-5 td a
 	 {
 		color: #000;
 		font-style: normal;
@@ -291,11 +296,40 @@
 		font-weight: bold;
 	}
 	
-	.purple td a:hover
+	.purple td a:hover,
+	.purple-1 td a:hover,
+	.purple-2 td a:hover,
+	.purple-3 td a:hover,
+	.purple-4 td a:hover,
+	.purple-5 td a:hover
 	 {
 		text-decoration: underline;
 	}
 
+	
+	.purple h3 a,
+	.purple-1 h3 a,
+	.purple-2 h3 a,
+	.purple-3 h3 a,
+	.purple-4 h3 a,
+	.purple-5 h3 a
+	 {
+		color: #800080;
+		font-style: normal;
+		text-decoration: none;
+	}
+	
+	.purple h3 a:hover,
+	.purple-1 h3 a:hover,
+	.purple-2 h3 a:hover,
+	.purple-3 h3 a:hover,
+	.purple-4 h3 a:hover,
+	.purple-5 h3 a:hover
+	 {
+		text-decoration: underline;
+	}
+
+	
 	<!-- only IE 6 -->
 	table .blue p {
 		_padding-bottom:20px;
