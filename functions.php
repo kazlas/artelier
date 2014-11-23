@@ -11,7 +11,9 @@
  * @since Arte 1.0
  */
 
+define ("DEFAULT_HEADER", "header_img");
 define ("DEFAULT_CLASS_STYLE", "green");
+define ("DEFAULT_NORMAL_STYLE", "normal");
  
 /*
 * Get category from address param or from post ID
@@ -33,53 +35,69 @@ function arte_get_category() {
 }
  
 /**
-* Get header class name "header_img [+ <category-name>]"
+* Get category CSS name where category suffix "-[x]" is stripped away as category number
+*/
+function arte_category_css ($category) {
+	//Use category slug for CSS class, category suffix "-[x]" is stripped away as category number
+	$slug = $category->slug;
+	$pos = strrpos($slug , "-");
+	if ($pos != FALSE) {
+		$css = substr($slug,0,$pos);
+	}
+	else {
+		$css = $slug;
+	}
+	
+	return $css;
+}
+
+
+
+/**
+* Get header CSS name "header_img [+ <category-prefix>]"
+* Prefix is counted till first "-" (minus sign)
 */
 function arte_header_class() {
-	$category = arte_get_category();
-	
-	//Use category slug for CSS
-	$slug = $category->slug;
-	$default_header = "header_img";
+	$css = arte_category_css (arte_get_category());
 	
 	//For front page use default header
 	if (is_front_page()) {
-		 echo $default_header . "_" .DEFAULT_CLASS_STYLE;
+		 echo DEFAULT_HEADER . "_" .DEFAULT_CLASS_STYLE;
 		 return;
 	};
 	
 	//Use category header
-	if (!empty($slug)){
-		echo $default_header ."_". $slug ;
+	if (!empty($css)){
+		echo DEFAULT_HEADER ."_". $css ;
 	}
 	else {
-		 echo $default_header . "_" .DEFAULT_CLASS_STYLE;
+		 echo DEFAULT_HEADER . "_" .DEFAULT_CLASS_STYLE;
 	}
 };
 
 /**
-* Get conent class name
+* Get content CSS name
 */
 function arte_content_class() {
-	$category = arte_get_category();
-	$slug = $category->slug;
-	$default_style = "normal";
+	$css = arte_category_css (arte_get_category());
 	
 	//For front page use default header
 	if (is_front_page()) {
-		 echo $default_style ." + " .DEFAULT_CLASS_STYLE;
+		 echo DEFAULT_NORMAL_STYLE ." + " .DEFAULT_CLASS_STYLE;
 		 return;
 	};
 	
 	//Use category header, default is green
-	if (!empty($slug)){
-		echo $default_style ." + ". $slug ;
+	if (!empty($css)){
+		echo DEFAULT_NORMAL_STYLE ." + ". $css ;
 	}
 	else {
-		echo $default_style ." + " .DEFAULT_CLASS_STYLE;
+		echo DEFAULT_NORMAL_STYLE ." + " .DEFAULT_CLASS_STYLE;
 	}
 	
 }
+
+
 
 /**
 * Generate list of categories links with CSS class. 
@@ -88,7 +106,7 @@ function arte_content_class() {
 function arte_category_list() {
 	$categories = get_categories('orderby=id&parent=0');
 	foreach ( (array) array_keys( $categories ) as $key ) {
-		echo "<li class=\"" .$categories[$key]->slug ."\">";
+		echo "<li class=\"" .arte_category_css ($categories[$key]) ."\">";
 		echo "<a href=\"" .  get_category_link($categories[$key]->cat_ID)  . "\">" . $categories[$key]->name . "</a>";
 		echo "</li>";
 	}
