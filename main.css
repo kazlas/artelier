@@ -244,6 +244,28 @@
 		_margin-bottom:20px;
 		_margin-right:105px;
 	}
+	
+	.newsletter-box {
+	background: #e6e6fa;
+	text-align: left;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-top: 10px;
+}
+	
+	.newsletter-box h2 {
+	font-size: 17px;
+	color: gray;
+	margin-left: 3px;
+}
+	
+	.newsletter-box input {
+	background: #f0f8ff;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
 
 
 

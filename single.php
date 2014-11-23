@@ -13,29 +13,20 @@
 <td valign="top">
 	<div class="<?php arte_content_class(); ?>" >
 <?php 
-	
+
 	//The Wordpress Loop
 	if (have_posts()) :
 		$category = arte_get_category();
-		$parentCategory = get_category($category->category_parent, false);
 
 		while (have_posts()) : the_post(); 
 			echo "<div>";
-			
 			echo "<h3>"; the_title(); echo "</h3>";
+			echo "<p>" . arte_header_links($category, 1) . "</p>";
 			
-			if ($parentCategory->slug == 'purple'){
-				echo "<p>" . arte_header_links() . "</p>";
-			}
 			the_content();
 			
-			
-			//Back link			
-			echo "&lt;&lt;&nbsp;";
-
-			echo "<a href =\"" . get_category_link($category->cat_ID);
-			echo "&amp;is_subcat=1";
-			echo "\">" . $category->name ."</a>";
+			//Back link
+			echo arte_back_link($category);
 			
 			echo "</div>";
 
@@ -44,19 +35,67 @@
 	
 	
 	/*
-	* Prepare header links for condtitions and contact form
+	* Prepare header links for survey, condtitions and contact form
 	*/
-	function arte_header_links() {
-		//Get page by slug
-		$conditions_page = get_page_by_path("conditions");
-		$contact_form_page = get_page_by_path("entry-form");
-		
-		//Separator consists of links: "conditions" and "participation form"
-		$moreSeparator = $moreSeparator . "<a></a>&nbsp;&nbsp;<a href=\"?page_id=" . $conditions_page->ID . "\">Warunki uczestnictwa</a>";
-		$moreSeparator = $moreSeparator . "&nbsp;&nbsp;" . "<a href=\"?page_id="  . $contact_form_page->ID . "\">Formularz zg&#322;oszeniowy</a>";
-		
-		return $moreSeparator;
+	function arte_header_links($category, $survey_id) {
+		$headerLinks = "";
+		$parentCategory = get_category($category->category_parent, false);
+
+		if ($parentCategory->slug == 'purple'){
+			//Get page by slug
+			$conditions_page = get_page_by_path("conditions");
+			$contact_form_page = get_page_by_path("entry-form");
+			
+			//Link to survey
+			if (arte_is_survey_active ("ARTESonda")) {
+				$artesonda_page = get_page_by_path("artesonda");
+				$headerLinks = $headerLinks . "<a></a>&nbsp;&nbsp;<a href=\"?page_id=" . $artesonda_page->ID . "\">ARTESonda</a>";
+			};
+			
+			//Links: "conditions" and "participation form"
+			$headerLinks = $headerLinks . "&nbsp;&nbsp;" . "<a href=\"?page_id="  . $conditions_page->ID . "\">Warunki uczestnictwa</a>";
+			$headerLinks = $headerLinks . "&nbsp;&nbsp;" . "<a href=\"?page_id="  . $contact_form_page->ID . "\">Formularz zg&#322;oszeniowy</a>";
+			
+		}
+		else {
+			//Link to survey
+			if (arte_is_survey_active ("ARTESonda")) {
+				$artesonda_page = get_page_by_path("artesonda");
+				$headerLinks = $headerLinks . "<a></a>&nbsp;&nbsp;<a href=\"?page_id=" . $artesonda_page->ID . "\">ARTESonda</a>";
+			}			
+		}
+
+		return $headerLinks;
 	}
+	
+	/*
+	* Check status for survey
+	*/
+	function arte_is_survey_active ($name){
+		$survey_details = array();
+		$wpdb = $GLOBALS['wpdb'];
+		$survey_details = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}surveys_survey WHERE name='{$name}'");
+		
+		return $survey_details->status;
+	}
+	
+	
+	/*
+	* Prepare back link
+	*/
+	function arte_back_link($category){
+		$parentCategory = get_category($category->category_parent, false);
+
+		if ($parentCategory->slug == 'purple'){
+			$backLink = $backLink . "&lt;&lt;&nbsp;";
+			$backLink = $backLink . "<a href =\"" . get_category_link($category->cat_ID);
+			$backLink = $backLink . "&amp;is_subcat=1";
+			$backLink = $backLink . "\">" . $category->name ."</a>";
+			
+			return $backLink;
+		}
+	}
+	
 
 ?>
 		</div>

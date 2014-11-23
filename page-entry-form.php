@@ -15,7 +15,6 @@
 
 <?php
 
-
 	//Show messages - only if set session_start() in wp-config.php
 	if ("" != $_SESSION['error']){
 		echo $_SESSION['error'] . "<br><br>";
@@ -27,14 +26,14 @@
 	}
 	$_SESSION['message'] = "";
 
-	//Show only page content
+	//Show page content in form to be sent to ./lib/postMail.php
+	echo "<form lang=\"pl\" action=\""; 
+	echo bloginfo('template_directory');  //find this theme directory
+	echo "/lib/postMail.php\" enctype=\"multipart/form-data\" method=\"POST\">";
 	the_post();
 	the_content();
+	echo "</form>";
 	
-	//Back link	
-	echo "&lt;&lt;&nbsp;";
-	$purple_category = get_category_by_slug("purple");
-	echo "<a href =\"" . get_category_link($purple_category->cat_ID) . "\">Cofnij</a>";
 ?>
 		
 </div>

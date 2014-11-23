@@ -18,10 +18,6 @@
 	the_post();
 	the_content();
 
-	//Back link	
-	echo "&lt;&lt;&nbsp;";
-	$purple_category = get_category_by_slug("purple");
-	echo "<a href =\"" . get_category_link($purple_category->cat_ID) . "\">Cofnij</a>";
 ?>
 		
 </div>

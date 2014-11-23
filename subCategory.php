@@ -42,7 +42,7 @@
 <?php			
 			endwhile; 
 						
-			//Back link	to parent category, parent found by category prefix: for "purple-10" parent is "purple"		
+			//Back link	to parent category		
 			$category = arte_get_category();
 			$parentCategory = get_category($category->category_parent, false);
 			if (isset($parentCategory->cat_ID)){
