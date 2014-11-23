@@ -14,6 +14,8 @@
 <div class="normal + purple" >
 
 <?php
+
+
 	//Show messages - only if set session_start() in wp-config.php
 	if ("" != $_SESSION['error']){
 		echo $_SESSION['error'] . "<br><br>";
