@@ -1,0 +1,69 @@
+
+	.header_img_green
+	 {
+		height: 459px;
+		min-height: 459px;
+		width: 768px;
+		min-width: 768px;
+		background-image: URL(../images/banners/banner_green.gif);
+		background-repeat: no-repeat;
+	}
+	.header_img_blue
+	 {
+		height: 459px;
+		min-height: 459px;
+		width: 768px;
+		min-width: 768px;
+		background-image:URL(../images/banners/banner_blue.gif);
+		background-repeat: no-repeat;
+	}
+	.header_img_purple
+	 {
+		height: 459px;
+		min-height: 459px;
+		width: 768px;
+		min-width: 768px;
+		background-image:URL(../images/banners/banner_purple.gif);
+		background-repeat: no-repeat;
+	}
+	.header_img_red
+	{
+		height: 459px;
+		min-height: 459px;
+		width: 768px;
+		min-width: 768px;
+		background-image:URL(../images/banners/banner_red.gif);
+		background-repeat: no-repeat;
+	}
+	.header_img_orange
+	{
+		height: 459px;
+		min-height: 459px;
+		width: 768px;
+		min-width: 768px;
+		background-image:URL(../images/banners/banner_orange.gif);
+		background-repeat: no-repeat;
+	}
+	
+	.green h3
+	{
+		color: #6b8e23;
+	}
+	.orange h3
+	{
+		color: #FFA500;
+	}
+	.blue h3
+	{
+	color: #4169e1;
+	}
+	.purple h3
+	{
+		color: #800080;
+	}
+	.red h3
+	{
+		color: #b22222;
+	}
+
+	

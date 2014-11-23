@@ -36,6 +36,23 @@ function arte_get_category() {
 	return $category;	
 }
  
+
+/*
+* Get current category children
+*/
+function arte_get_category_children ($category_id){
+	$args = array (
+		'orderby' => 'slug',
+		'parent' => $category_id,
+		'hide_empty' => false,
+		'exclude' => '1' //EXCLUDE "Bez kategorii"
+	);
+		
+	$child_categories = get_categories($args);
+	return $child_categories;
+}
+
+
 /**
 * Get category name prefix where category suffix "-[x]" is stripped away as category number
 */

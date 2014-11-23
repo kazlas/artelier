@@ -22,7 +22,7 @@
 		while (have_posts()) : the_post(); 
 			echo "<div>";
 			echo "<h3>"; the_title(); echo "</h3>";
-			echo "<p>" . arte_header_links($category, 1) . "</p>";
+			echo "<p>" . arte_header_links($category) . "</p>";
 			
 			the_content();
 			
@@ -38,33 +38,24 @@
 	/*
 	* Prepare header links for survey, condtitions and contact form
 	*/
-	function arte_header_links($category, $survey_id) {
+	function arte_header_links($category) {
 		$headerLinks = "";
 		$parentCategory = get_category($category->category_parent, false);
 
-		if ($parentCategory->slug == 'purple'){
-			//Get page by slug
-			$conditions_page = get_page_by_path("conditions");
-			$contact_form_page = get_page_by_path("entry-form");
+		//Get page by slug
+		$conditions_page = get_page_by_path("conditions");
+		$contact_form_page = get_page_by_path("entry-form");
 			
-			//Link to survey
-			if (arte_is_survey_active ("ARTESonda")) {
-				$artesonda_page = get_page_by_path("artesonda");
-				$headerLinks = $headerLinks . "<a></a>&nbsp;&nbsp;<a href=\"?page_id=" . $artesonda_page->ID . "\">ARTESonda</a>";
-			};
+		//Link to survey
+		if (arte_is_survey_active ("ARTESonda")) {
+			$artesonda_page = get_page_by_path("artesonda");
+			$headerLinks = $headerLinks . "<a></a>&nbsp;&nbsp;<a href=\"?page_id=" . $artesonda_page->ID . "\">ARTESonda</a>";
+		};
 			
-			//Links: "conditions" and "participation form"
-			$headerLinks = $headerLinks . "&nbsp;&nbsp;" . "<a href=\"?page_id="  . $conditions_page->ID . "\">Warunki uczestnictwa</a>";
-			$headerLinks = $headerLinks . "&nbsp;&nbsp;" . "<a href=\"?page_id="  . $contact_form_page->ID . "\">Formularz zg&#322;oszeniowy</a>";
+		//Links: "conditions" and "participation form"
+		$headerLinks = $headerLinks . "&nbsp;&nbsp;" . "<a href=\"?page_id="  . $conditions_page->ID . "\">Warunki uczestnictwa</a>";
+		$headerLinks = $headerLinks . "&nbsp;&nbsp;" . "<a href=\"?page_id="  . $contact_form_page->ID . "\">Formularz zg&#322;oszeniowy</a>";
 			
-		}
-		else {
-			//Link to survey
-			if (arte_is_survey_active ("ARTESonda")) {
-				$artesonda_page = get_page_by_path("artesonda");
-				$headerLinks = $headerLinks . "<a></a>&nbsp;&nbsp;<a href=\"?page_id=" . $artesonda_page->ID . "\">ARTESonda</a>";
-			}			
-		}
 
 		return $headerLinks;
 	}
@@ -85,16 +76,12 @@
 	* Prepare back link
 	*/
 	function arte_back_link($category){
-		$parentCategory = get_category($category->category_parent, false);
-
-		if ($parentCategory->slug == 'purple'){
-			$backLink = $backLink . "&lt;&lt;&nbsp;";
-			$backLink = $backLink . "<a href =\"" . get_category_link($category->cat_ID);
-			$backLink = $backLink . "&amp;is_subcat=1";
-			$backLink = $backLink . "\">" . $category->name ."</a>";
+		
+		$backLink = $backLink . "&lt;&lt;&nbsp;";
+		$backLink = $backLink . "<a href =\"" . get_category_link($category->cat_ID);
+		$backLink = $backLink . "\">" . $category->name ."</a>";
 			
-			return $backLink;
-		}
+		return $backLink;
 	}
 	
 

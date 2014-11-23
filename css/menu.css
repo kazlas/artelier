@@ -1,0 +1,94 @@
+	.newsletter-box {
+	background: #e6e6fa;
+	text-align: left;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-top: 10px;
+}
+	
+	.newsletter-box h2 {
+	font-size: 18px;
+	color: gray;
+	margin-left: 3px;
+}
+	
+	.newsletter-box input {
+	background: #f0f8ff;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+	.search-box {
+	text-align: right;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+	.search-box input{
+	background: #003db7;
+	background-color: #f0f8ff;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+	#menu{
+		margin: 0px 0px 0px 0px;
+		list-style: none;
+	}
+
+	#menu li {
+	margin: 10px 0px 10px 0px;
+}
+
+	#menu a {
+	text-decoration: none;
+	font-size: 17px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	padding: 2px 20px 2px 0px;
+}	
+	
+	#menu .green a
+	{
+		color: #555;
+	}
+	#menu .green a:hover
+	{
+		color: #6b8e23;
+	}
+	#menu .orange a
+	{
+		color: #555;
+	}
+	#menu .orange a:hover
+	{
+		color: #FFA500;
+	}
+	#menu .blue a
+	{
+		color: #555;
+	}
+	#menu .blue a:hover
+	{
+	color: #4169e1;
+	}
+	#menu .purple a
+	{
+		color: #555;
+	}
+	#menu .purple a:hover
+	{
+		color: #800080;
+	}
+	#menu .red a
+	{
+		color: #555;
+	}
+	#menu .red a:hover
+	{
+		color: #b22222;
+	}
+
+	
