@@ -1,5 +1,5 @@
 <!-- menu -->	
-	<td valign="top" align="right" width="200">
+	<td valign="top" align="right" width="230">
 
 		<ul id="menu">
 		<?php arte_category_list(); ?>

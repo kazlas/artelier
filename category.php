@@ -1,19 +1,15 @@
 <?php
 	/**
-	For purple-1, purple-2,.. categories display in special template "category-purple-n.php", others display by normal Wordpress flow
+	For parameter 'is_subcat' categories display in special template for subcategories "subCategory.php". 
+	others display by normal Wordpress flow
 	*/
-	
-	$category = arte_get_category();
-	$start_with_purple = (strncmp ($category->slug, "purple", strlen("purple"))==0);
-	
-	if ($start_with_purple) {
-		get_template_part('category-purple-n');
+	if (isset ($wp_query->query_vars['is_subcat'])){
+		get_template_part('subCategory');
 	}
 	else {
 		get_template_part('index');
 	}
-
-
 	
 	
+
 ?>

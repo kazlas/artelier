@@ -1,3 +1,8 @@
+<?php
+	/**
+	Template for sub-category. 
+	*/
+?>
 <?php get_header(); ?>
 <body leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
 
@@ -25,17 +30,25 @@
 					<tr>
 					<td><div class="purple_item">&nbsp;</div></td>
 					<td>
-					<a href="<?php  echo get_permalink(); ?>"><?php the_title(); ?></a>
+					<?php  
+						$post_link = get_permalink();
+						//Set 'with_conditions' in link to display post with conditions&regulations links
+						//$post_link = $post_link . "&amp;with_conditions=" . get_query_var('with_conditions');
+					?>
+					<a href="<?php  echo  $post_link  ?>"><?php the_title(); ?></a>
 					</td>
 					</tr>
 					</table>
 <?php			
 			endwhile; 
 						
-			//Back link			
-			echo "&lt;&lt;&nbsp;";
-			$purple_category = get_category_by_slug("purple");
-			echo "<a href =\"" . get_category_link($purple_category->cat_ID) . "\">" . $purple_category->name ."</a>";
+			//Back link	to parent category, parent found by category prefix: for "purple-10" parent is "purple"		
+			$category = arte_get_category();
+			$parentCategory = get_category($category->category_parent, false);
+			if (isset($parentCategory->cat_ID)){
+				echo "&lt;&lt;&nbsp;";
+				echo "<a href =\"" . get_category_link($parentCategory->cat_ID) . "\">" . $parentCategory->name ."</a>";
+			}
 
 		endif; 
 

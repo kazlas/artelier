@@ -14,6 +14,8 @@
 define ("DEFAULT_HEADER", "header_img");
 define ("DEFAULT_CLASS_STYLE", "green");
 define ("DEFAULT_NORMAL_STYLE", "normal");
+
+
  
 /*
 * Get category from address param or from post ID
@@ -35,10 +37,10 @@ function arte_get_category() {
 }
  
 /**
-* Get category CSS name where category suffix "-[x]" is stripped away as category number
+* Get category name prefix where category suffix "-[x]" is stripped away as category number
 */
-function arte_category_css ($category) {
-	//Use category slug for CSS class, category suffix "-[x]" is stripped away as category number
+function arte_category_slug_prefix ($category) {
+	//Use category slug, category suffix "-[x]" is stripped away as category number
 	$slug = $category->slug;
 	$pos = strrpos($slug , "-");
 	if ($pos != FALSE) {
@@ -58,7 +60,7 @@ function arte_category_css ($category) {
 * Prefix is counted till first "-" (minus sign)
 */
 function arte_header_class() {
-	$css = arte_category_css (arte_get_category());
+	$css = arte_category_slug_prefix (arte_get_category());
 	
 	//For front page use default header
 	if (is_front_page()) {
@@ -79,7 +81,7 @@ function arte_header_class() {
 * Get content CSS name
 */
 function arte_content_class() {
-	$css = arte_category_css (arte_get_category());
+	$css = arte_category_slug_prefix (arte_get_category());
 	
 	//For front page use default header
 	if (is_front_page()) {
@@ -106,13 +108,21 @@ function arte_content_class() {
 function arte_category_list() {
 	$categories = get_categories('orderby=id&parent=0');
 	foreach ( (array) array_keys( $categories ) as $key ) {
-		echo "<li class=\"" .arte_category_css ($categories[$key]) ."\">";
+		echo "<li class=\"" .arte_category_slug_prefix ($categories[$key]) ."\">";
 		echo "<a href=\"" .  get_category_link($categories[$key]->cat_ID)  . "\">" . $categories[$key]->name . "</a>";
 		echo "</li>";
 	}
 }
 
 
+/*
+* Additional parameter in query string - is_child_cat
+* which tells if display category in sub-category style
+*/
+add_filter('query_vars','arte_parameter_is_subcat');
+function arte_parameter_is_subcat($qvars){
+	$qvars[] = 'is_subcat';
+	return $qvars;
+}
 	
-
 ?>

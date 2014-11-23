@@ -16,18 +16,26 @@
 	
 	//The Wordpress Loop
 	if (have_posts()) :
+		$category = arte_get_category();
+		$parentCategory = get_category($category->category_parent, false);
+
 		while (have_posts()) : the_post(); 
 			echo "<div>";
 			
 			echo "<h3>"; the_title(); echo "</h3>";
-			echo "<p>" . arte_header_links() . "</p>";
+			
+			if ($parentCategory->slug == 'purple'){
+				echo "<p>" . arte_header_links() . "</p>";
+			}
 			the_content();
 			
 			
 			//Back link			
 			echo "&lt;&lt;&nbsp;";
-			$category = arte_get_category();
-			echo "<a href =\"" . get_category_link($category->cat_ID) . "\">" . $category->name ."</a>";
+
+			echo "<a href =\"" . get_category_link($category->cat_ID);
+			echo "&amp;is_subcat=1";
+			echo "\">" . $category->name ."</a>";
 			
 			echo "</div>";
 
