@@ -23,7 +23,7 @@
 ?>
 					<table class="<?php arte_content_class(); ?>">
 					<tr>
-					<td><div class="blue_item">&nbsp;</div></td>
+					<td></td>
 					<td>
 					<h3><i><?php the_title(); ?></i></h3>
 					<?php the_time('j F Y') ?>
