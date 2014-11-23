@@ -5,6 +5,7 @@
 <tr>
 <td valign="top" height="1">
 <div class="header_img_purple">&nbsp;</div>
+<?php get_search_form(); ?>
 	<table align="center" width="100%" cellpadding="0" cellspacing="0" border="0" noborder>
 	<tr>
 	

@@ -118,7 +118,7 @@
 		background-image:URL(./images/purple_item.gif);
 		background-repeat: no-repeat;
 	}
-
+	
 	#menu{
 		margin: 10px 0px 0px 0px;
 		list-style: none;
@@ -267,6 +267,17 @@
 	margin-right: 5px;
 }
 
+	.search-box {
+	text-align: right;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
 
-
+	.search-box input{
+	background: #003db7;
+	background-color: #f0f8ff;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
 	

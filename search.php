@@ -1,11 +1,10 @@
 <?php
-	//Set front page to display category
-	if (is_front_page()) {
-		//For front page display only "blue" category
-		$blue_category =  get_category_by_path("blue");
-		$location = "Location: " . "?cat=" . $blue_category->cat_ID;
-		header ($location);
-	} 
+/**
+ * The template for displaying Search Results pages.
+ *
+ * @package WordPress
+ * @subpackage Artelier
+ */
 ?>
 <?php get_header(); ?>
 <body leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
@@ -26,15 +25,29 @@
 	
 	//The Wordpress Loop
 	if (have_posts()) :
+		echo "<h3>" . __("Wyniki wyszukiwania:") . "</h3>";
 		while (have_posts()) : the_post(); 
 ?>
 					<div>
-						<?php the_content("Szczeg&#243;&#322;y"); ?>
+					<?php
+						$category = get_the_category(); 
+						$link_name = $category[0]->cat_name;
+						
+						if (empty($link_name)) {
+							$link_name= __("Wi&#281;cej");
+						}
+					?>
+					<a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>">
+					<?=$link_name ?>
+					</a>
+					<?php the_excerpt(); ?>
 					</div>
 <?php 
 		endwhile; 
+	else : echo  __("Niestety - nie znaleziono frazy");
 	endif; 
-?>
+?> 
+
 
 </div>
 </td>

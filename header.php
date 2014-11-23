@@ -6,7 +6,7 @@
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<META NAME="Author" CONTENT="Justyna Jaskowiak, Kazimierz Laskowski">
+<META NAME="Author" CONTENT="Kazimierz Laskowski, Justyna Stenka">
 <?php wp_head(); ?>
 <script type="text/javascript">
 

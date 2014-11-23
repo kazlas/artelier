@@ -15,12 +15,8 @@
 	 }
 	 return $pageURL;
 	}
-
-	//Write HTML form action
-	echo "<form lang=\"pl\" action=\""; 
-	echo bloginfo('template_directory'); 
-	echo "/lib/postSignForNewsletterMail.php\" enctype=\"multipart/form-data\" method=\"POST\">";
-?>		
+?>
+<form lang="pl" action="<?php echo bloginfo('template_directory'); ?>/lib/postSignForNewsletterMail.php" enctype="multipart/form-data" method="POST">
 <table class="newsletter-box" border="0" width="200">
 <tr class="label">
 <td><h2>Newsletter</h2></td>
@@ -58,7 +54,7 @@
 <td><input name="email" type="text"></td>
 </tr>
 <tr>
-<td><input type="submit" value="Zapisz mnie" /> </td>
+<td><input type="submit" value="Zapisz si&#281; na newsletter" /> </td>
 </tr>
-</form>		
 </table>
+</form>		
